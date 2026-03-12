@@ -208,3 +208,23 @@ export function useBiometric(): UseBiometricResult {
 
 export default BiometricAuth;
 export type { BiometryType, BiometricStatus, AuthOptions, AuthResult, BiometricError };
+
+// Convenience method to check if device supports any biometrics
+export async function isBiometricSupported(): Promise<boolean> {
+  const auth = new BiometricAuth();
+  const status = await auth.isAvailable();
+  return status.available && status.enrolled;
+}
+
+// Get human-readable biometry name
+export function getBiometryDisplayName(type: BiometryType): string {
+  const names: Record<BiometryType, string> = {
+    FaceID: 'Face ID',
+    TouchID: 'Touch ID',
+    Fingerprint: 'Fingerprint',
+    Face: 'Face Recognition',
+    Iris: 'Iris Scanner',
+    None: 'None',
+  };
+  return names[type] || 'Biometric';
+}
