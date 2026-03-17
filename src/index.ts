@@ -228,3 +228,8 @@ export function getBiometryDisplayName(type: BiometryType): string {
   };
   return names[type] || 'Biometric';
 }
+
+// Check if biometric type is face-based
+export function isFaceBiometry(type: BiometryType): boolean {
+  return type === 'FaceID' || type === 'Face';
+}
