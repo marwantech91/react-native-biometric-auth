@@ -233,3 +233,8 @@ export function getBiometryDisplayName(type: BiometryType): string {
 export function isFaceBiometry(type: BiometryType): boolean {
   return type === 'FaceID' || type === 'Face';
 }
+
+// Check if biometric type is fingerprint-based
+export function isFingerprintBiometry(type: BiometryType): boolean {
+  return type === 'TouchID' || type === 'Fingerprint';
+}
