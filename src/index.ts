@@ -238,3 +238,8 @@ export function isFaceBiometry(type: BiometryType): boolean {
 export function isFingerprintBiometry(type: BiometryType): boolean {
   return type === 'TouchID' || type === 'Fingerprint';
 }
+
+// Check if any biometric method is available on the device
+export function hasBiometricSupport(type: BiometryType): boolean {
+  return type !== 'None';
+}
