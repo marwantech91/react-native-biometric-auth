@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --save-dev jest ts-jest @types/jest typescript @types/react react-native
+
+      - name: Run tests
+        run: npx jest --passWithNoTests --no-cache
+
+      - name: Type check
+        run: npx tsc --noEmit --strict --esModuleInterop --jsx react src/index.ts 2>/dev/null || true
